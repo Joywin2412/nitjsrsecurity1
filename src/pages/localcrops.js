@@ -223,7 +223,7 @@ const Home = () => {
       setLon(foundLocation.lon);
     }
     const p = localStorage.getItem("polygon");
-    if (location) {
+    if (p) {
       const p2 = JSON.parse(p);
       // console.log(p2.polygon_id);
       setId(p2.polygon_id);
@@ -235,9 +235,10 @@ const Home = () => {
       setFriends(p3.friends);
     }
 
-    if (JSON.parse(p).polygon_id) {
-      setLoading(1);
+    if (localStorage.getItem("polygon")) {
       fetchFarmers();
+    } else {
+      setLoading(0);
     }
     return () => {
       document.head.removeChild(link);
@@ -255,6 +256,15 @@ const Home = () => {
       ></link>
 
       <Navbar profile={profile} setProfile={setProfile} show={1} />
+      {options ? (
+        <h3> Click on the crop to find who is growing the crop in your area</h3>
+      ) : (
+        <h3>
+          {" "}
+          Gain insight on what crops farmers in your area are growing by filling
+          the form in your profile
+        </h3>
+      )}
       <h1 style={{ marginBottom: "50px", marginTop: "50px", color: "black" }}>
         Select the crops you want to explore in your area
       </h1>
@@ -265,7 +275,6 @@ const Home = () => {
         {" "}
         Farmers{" "}
       </button>
-
       {name ? (
         options ? (
           data.map((curr_val, curr_idx, arr) => {

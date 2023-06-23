@@ -19,8 +19,9 @@ function Stores({ flag }) {
   const [lat1, setLat1] = useState([]);
   const [lon1, setLon1] = useState([]);
   const [loading, setLoading] = useState(1);
-  const { lat, lon, setLat, setLon } = useGlobalContext();
-  const [name, setName] = useState([]);
+  const { lat, lon, setLat, setLon, name } = useGlobalContext();
+  const [name2, setName] = useState([]);
+
   const [address, setAddress] = useState([""]);
   console.log(flag);
   useEffect(() => {
@@ -93,8 +94,9 @@ function Stores({ flag }) {
   else if (flag === 1 || flag === 0) {
     return (
       <div>
+        {name ? "" : <h1> Signup To find Stores in your area</h1>}
         <ul>
-          {name.map((curr_val, curr_idx) => {
+          {name2.map((curr_val, curr_idx) => {
             console.log(curr_val);
             console.log(lat1[curr_idx]);
             return (
@@ -112,7 +114,7 @@ function Stores({ flag }) {
           <Marker position={[lat, lon]}>
             <Popup>You</Popup>
           </Marker>
-          {name.map((curr_val, curr_idx, arr) => {
+          {name2.map((curr_val, curr_idx, arr) => {
             let f1 = parseFloat(lat1[curr_idx]);
             let f2 = parseFloat(lon1[curr_idx]);
             return (

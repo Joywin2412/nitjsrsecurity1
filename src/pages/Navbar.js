@@ -94,13 +94,13 @@ function Component({ profile, setProfile, ...props }) {
           )}
 
           <span
-            style={{ color: "red", fontSize: "10px" }}
+            style={{ color: "white", fontSize: "10px" }}
             onClick={clickHandler}
           >
             {" "}
             {name} {email}
           </span>
-          <span style={{ color: "red", fontSize: "10px" }}>
+          <span style={{ color: "white", fontSize: "10px" }}>
             {" "}
             {email === "" ? <Link to="/login">Login</Link> : ""}
           </span>

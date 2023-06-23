@@ -1,14 +1,12 @@
 .profile-container {
   display: flex;
   flex-direction: column;
-  
+
   margin-top: 50px;
   float: left;
-  
-
 }
-.noti{
-  border:1px solid black;
+.noti {
+  border: 1px solid black;
   float: inline-end;
   position: absolute;
   display: inline;
@@ -18,7 +16,7 @@
   top: 300px;
 }
 
-.friends{
+.friends {
   float: inline-end;
   text-align: center;
   position: absolute;
@@ -26,19 +24,16 @@
   left: 800px;
   width: 600px;
   color: rgb(86, 83, 83);
-
 }
-.addfriend{
+.addfriend {
   width: 120px;
-  
 }
-.profile-card{
+.profile-card {
   background-color: white;
   text-align: left;
   padding-left: 100px;
   font-size: medium;
 }
-/this is for other profile/
 .profile-info {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -53,13 +48,12 @@
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
-  
 }
 
 .profile-email {
   font-size: 18px;
 }
-.del{
+.del {
   display: inline-block;
   width: 80px;
   margin: 0px;

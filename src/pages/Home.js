@@ -329,9 +329,22 @@ const Home = () => {
                 Livestock{" "}
               </button>
             </div>
-
-            {toggle === 1 ? <Form form={form} setForm={setForm} /> : null}
-            {toggle === 2 ? <Develop></Develop> : ""}
+            {name ? (
+              toggle === 1 ? (
+                <Form form={form} setForm={setForm} />
+              ) : null
+            ) : (
+              ""
+            )}
+            {name ? (
+              toggle === 2 ? (
+                <Develop></Develop>
+              ) : (
+                ""
+              )
+            ) : (
+              <h1> Signup to access</h1>
+            )}
           </div>
           <div className="first">
             <Card />

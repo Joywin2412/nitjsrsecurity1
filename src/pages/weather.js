@@ -59,7 +59,6 @@ const Home = () => {
   }, []);
   let t1, t2;
   const { name, email, name2, email2, setName, setEmail } = useGlobalContext();
-  console.log(name, name2, lat, lon);
 
   if (name) {
     t1 = name;
@@ -68,9 +67,10 @@ const Home = () => {
   if (loading) return <Loading />;
   else {
     if (profile) {
-          return (
+      return (
         <div>
           <Navbar profile={profile} setProfile={setProfile} show={1} />
+          {name ? "" : <h1> Signup to access weather in your area </h1>}
           <div className="weather-container">
             <div className="weather-icon-container">
               <img
@@ -82,12 +82,10 @@ const Home = () => {
             <div className="weather-info-container">
               <p className="temperature-info">{temp}°C</p>
               <p className="weather-description">{desc}</p>
-              <p className="humidity-info">
-                Humidity: {humidity}%
-              </p>
+              <p className="humidity-info">Humidity: {humidity}%</p>
             </div>
           </div>
-          <Footer/>
+          <Footer />
         </div>
       );
     } else {
@@ -99,6 +97,7 @@ const Home = () => {
             href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap"
             rel="stylesheet"
           ></link>
+          {name ? "" : <h1> Signup to access weather in your area</h1>}
           <Navbar profile={profile} setProfile={setProfile} show={1} />
         </div>
       );
