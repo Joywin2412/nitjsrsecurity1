@@ -41,7 +41,7 @@ However if a user is present inside a polygon already created he gets assigned t
 the farmers under one polygon.
 The key idea is the soil temperature is almost constant across a small polygon which will make our data
 more reliable and foster relevant advices through the medium of farmers phone.
-
+Machine learning is added in the homepage to predict the crop yield given a set of features
 
 <img width="882" alt="Screenshot 2023-04-25 190851" src="https://user-images.githubusercontent.com/78720314/234297088-09b777ad-b5b6-42d6-892d-32b81ce0f6d5.png">
 
