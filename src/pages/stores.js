@@ -84,6 +84,9 @@ function Stores({ flag }) {
           setLon1(lon2);
           setAddress(add);
           setLoading(0);
+        })
+        .catch((err) => {
+          setLoading(0);
         });
     } else {
       setLoading(0);

@@ -53,7 +53,8 @@ const Home = () => {
         setDesc(res.data.weather[0].description);
         setIcon(res.data.weather[0].icon);
         setLoading(0);
-      });
+      })
+      .catch((err) => setLoading(0));
 
     // setLoading(0);
   }, []);

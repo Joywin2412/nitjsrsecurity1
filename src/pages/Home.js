@@ -261,7 +261,7 @@ const Home = () => {
           "polygon",
           JSON.stringify({ polygon_id: d2.data.Polygon_id })
         );
-      } catch (err) {}
+      } catch (err) { }
     }
     setLoading(false);
   };
@@ -276,6 +276,8 @@ const Home = () => {
       console.log(foundUser);
       setName(foundUser.name);
       setEmail(foundUser.email);
+    } else {
+      setLoading(0);
     }
     fetchLocation();
   }, []);
@@ -301,53 +303,15 @@ const Home = () => {
           <Navbar profile={profile} setProfile={setProfile} show={1} />
           {/* <p> This is a farmer app</p> */}
           <div className="farm-container">
-            <h1>AGRO VISION</h1>
+            <h1>National Institute Of Technology Jamshedpur</h1>
             <p className="agro-para">
-              Work smarter and not harder with our real time dashboard
+              Secure your data and access it anywhere from the globe
             </p>
           </div>
-          <div className="form-div">
-            {/* <p> This is a farmer app</p> */}
-            <div className="btns">
-              <button
-                style={{ width: "250px" }}
-                onClick={() => {
-                  setToggle(1);
-                }}
-                className="btn-1 but"
-              >
-                Get Started
-              </button>
-              <button
-                style={{ width: "250px" }}
-                className="btn-2 but"
-                onClick={() => {
-                  setToggle(2);
-                }}
-              >
-                {" "}
-                Livestock{" "}
-              </button>
-            </div>
-            {name ? (
-              toggle === 1 ? (
-                <Form form={form} setForm={setForm} />
-              ) : null
-            ) : (
-              ""
-            )}
-            {name ? (
-              toggle === 2 ? (
-                <Develop></Develop>
-              ) : (
-                ""
-              )
-            ) : (
-              <h1> Signup to access</h1>
-            )}
-          </div>
+
+
           <div className="first">
-            <Card />
+
             <Footer />
           </div>
         </div>

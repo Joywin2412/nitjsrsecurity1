@@ -28,14 +28,6 @@ function Form(props) {
   if (props.form == 0) {
     return (
       <div className="form">
-        <button className="but"
-        style={{display: "block",margin: "0 auto",width:"350px",marginTop:"50px", backgroundColor:"#5F7464" }}
-          onClick={() => {
-            props.setForm(1);
-          }}
-        >
-          Check Best Crops for Your region
-        </button>
         <Forms
           form={props.form}
           setForm={props.setForm}

@@ -20,9 +20,7 @@ function App() {
         <Route exact path="/profile" element={<Profile />} />
         <Route path="/profile/:name2" element={<UserProfile />} />
         <Route path="/about" element={<About />} />
-        <Route path="/weather" element={<Weather />} />
-        <Route path="/localcrops" element={<Crops />} />
-        <Route path="/StoreSection" element={<Stores />} />
+
       </Routes>
     </div>
   );

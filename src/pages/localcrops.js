@@ -226,7 +226,7 @@ const Home = () => {
     if (p) {
       const p2 = JSON.parse(p);
       // console.log(p2.polygon_id);
-      setId(p2.polygon_id);
+      if (typeof p2 != "NULL") setId(p2.polygon_id);
     }
 
     const p2 = localStorage.getItem("friends");

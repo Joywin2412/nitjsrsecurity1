@@ -15,7 +15,7 @@ function Profile() {
   const { name, email, setName, setEmail, polygon_id } = useGlobalContext();
   const [loading, setLoading] = useState(1);
   const { obj, setObj } = useGlobalContext();
-  const [form, setForm] = useState(0);
+  const [form, setForm] = useState(1);
   const [phone, setPhone] = useState("");
   const [Submit, setSubmit] = useState(0);
   const [options, setOptions] = useState([]);
@@ -26,7 +26,34 @@ function Profile() {
   const [friends, setFriends] = useState([]);
   const [hashFriends, setHashFriends] = useState([]);
   const [acc, setAcc] = useState(1);
+  const [chatText, setChatText] = useState("")
+  const [chat, setChat] = useState(0)
+  const [botResponse, setBot] = useState("")
   const navigate = useNavigate();
+  const chatHandler = async () => {
+    let s1 = `https://agromlapi.onrender.com/chat`;
+    setLoading(1);
+    let requestOptions = {
+      method: "post",
+      url: s1,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let val = JSON.stringify({
+      text: chatText
+    });
+    console.log(val);
+    try {
+      const d = await axios.post(s1, val, requestOptions);
+      console.log(d)
+      setBot(d.data)
+      setLoading(0);
+    } catch (err) {
+      console.log(err);
+      setLoading(0);
+    }
+  }
   const deleteHandler = async () => {
     // name,email
     let s1 = `${process.env.REACT_APP_BACKEND}/user/delete`;
@@ -194,7 +221,7 @@ function Profile() {
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
       accesstoken = foundUser.token;
-      name = foundUser.email;
+      name = foundUser.name;
       email = foundUser.email;
     }
     if (polygonUser) {
@@ -216,6 +243,7 @@ function Profile() {
     try {
       let d = await axios.post(s1, val, requestOptions);
       setShowOptions(d.data.options);
+      console.log("In profile", d.data)
 
       d = await axios.post(
         s + `/user/friends`,
@@ -279,7 +307,7 @@ function Profile() {
     let myEmail;
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
-      console.log("This is it", foundUser);
+      // console.log("This is it", foundUser);
       setName(foundUser.name);
       setEmail(foundUser.email);
       myEmail = foundUser.email;
@@ -303,10 +331,10 @@ function Profile() {
     return <Loading />;
   } else {
     return (
-      <>
+      <div>
         <Navbar profile={profile} setProfile={setProfile} show={0} />
         <div className="profile-container">
-          <div className="profile-card">
+          <div className="profile-card" >
             <p className="stat">
               <strong>Name</strong> : {name}{" "}
             </p>
@@ -318,120 +346,15 @@ function Profile() {
             </p>
             <p>
               {" "}
-              What crops you are growing? Help other farmers in your area by
-              filling this form
-            </p>
-            <div
-              className="forms
-          "
-            >
-              <Forms
-                form={form}
-                setForm={setForm}
-                Submit={0}
-                options={options}
-                setOptions={setOptions}
-                showOptions={showOptions}
-                setShowOptions={setShowOptions}
-              ></Forms>
-            </div>
-          </div>
 
-          <div className="friends">
-            <p> Notifications</p>
-            {typeof notif === "object"
-              ? notif.map((curr_val, curr_idx, arr) => {
-                  let s = "/profile/";
-                  s += curr_val.Name;
-                  return (
-                    <div>
-                      <Link to={s}>
-                        {" "}
-                        {curr_val.Name} {curr_val.Email}{" "}
-                      </Link>{" "}
-                      <button onClick={() => acceptHandler(curr_val.Email)}>
-                        {" "}
-                        ✅
-                      </button>
-                      <button onClick={() => denyHandler(curr_val.Email)}>
-                        {" "}
-                        ❌
-                      </button>
-                    </div>
-                  );
-                })
-              : ""}
-            <div>
-              <p> Friends</p>
-              {friends
-                ? friends.map((curr_val, curr_idx, arr) => {
-                    let s = "/profile/";
-                    s += curr_val.Name;
-                    return (
-                      <div>
-                        <Link to={s}>
-                          {" "}
-                          {curr_val.Name} {curr_val.Email}{" "}
-                        </Link>{" "}
-                      </div>
-                    );
-                  })
-                : ""}
-            </div>
-            <div>
-              <p> People in your area</p>
-              {obj
-                ? obj.map((curr_val, curr_idx, arr) => {
-                    if (curr_val.Name === name) return;
-                    console.log(curr_val);
-                    console.log(
-                      hashNotif[curr_val.Email],
-                      hashFriends[curr_val.Email]
-                    );
-                    if (hashNotif[curr_val.Email]) return;
-                    if (hashFriends[curr_val.Email]) return;
-                    let s = "/profile/";
-                    s += curr_val.Name;
-                    return (
-                      <div>
-                        <Link to={s}>
-                          {" "}
-                          {curr_val.Name} {curr_val.Email}{" "}
-                        </Link>{" "}
-                        {pending[curr_val.Email] ? (
-                          <button> Pending</button>
-                        ) : (
-                          <button
-                            className="addfriend"
-                            onClick={() => {
-                              clickHandler(curr_val.Email);
-                            }}
-                          >
-                            Add Friend
-                          </button>
-                        )}
-                      </div>
-                    );
-                  })
-                : ""}
-            </div>
-            <br></br>
-            <br></br>
-            <button
-              style={{
-                backgroundColor: "#064635",
-                borderRadius: "5px",
-                color: "#fff",
-                padding: "5px 15px",
-              }}
-              onClick={deleteHandler}
-            >
-              {" "}
-              Delete your account
-            </button>
+            </p>
+
           </div>
         </div>
-      </>
+
+
+      </div>
+
     );
   }
 }
